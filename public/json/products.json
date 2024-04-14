@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Biancaneve",
+      "price": 5,
+      "unit": null,
+      "image": "../assets/images/biancaneve.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Margherita",
+      "price": 5.5,
+      "unit": "roll",
+      "image": "../assets/images/margherita.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Diavola",
+      "price": 7,
+      "unit": null,
+      "image": "../assets/images/diavola.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Capricciosa",
+      "price": 9,
+      "unit": "roll",
+      "image": "../assets/images/capricciosa.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Marinara",
+      "price": 6.5,
+      "unit": null,
+      "image": "../assets/images/marinara.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Porcina",
+      "price": 8,
+      "unit": "roll",
+      "image": "../assets/images/porcina.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Salsiccia e Friarielli",
+      "price": 9.5,
+      "unit": null,
+      "image": "../assets/images/salsiccia&friarielli.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Vegetariana",
+      "price": 9,
+      "unit": "roll",
+      "image": "../assets/images/vegetariana.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Parmigiana",
+      "price": 8.5,
+      "unit": null,
+      "image": "../assets/images/parmigiana.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Quattro stagioni",
+      "price": 10,
+      "unit": "roll",
+      "image": "../assets/images/quattro stagioni.jpg"
+    }
+  ]
+}
