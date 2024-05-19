@@ -3,6 +3,19 @@ import "../styles/cart.css";
 import { formatCurrency } from "../util";
 import { useAddItem, useRemoveItem, useCart } from "../hooks";
 
+/*
+TODO: Modify "cart.ts" and manage the dispatch of orders to the backend, passing as object:
+{
+  personName: ...,
+  products: [
+    obj{
+      id: ...,
+      quantity: ...
+    }
+  ]
+}
+*/
+
 export default function Cart() {
   const [totalCost, setTotalCost] = useState(0);
   const { cartItems } = useCart();
@@ -102,6 +115,19 @@ export default function Cart() {
           </tr>
         </tbody>
       </table>
+      <div className="button-wrapper">
+        <button
+          className="button add-order"
+        
+          onClick={() => {
+              /*
+              TODO: add functionality for order submission.
+              */
+          }}
+        >
+          Confirm
+        </button>
+      </div>
     </div>
   );
 }

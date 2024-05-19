@@ -8,8 +8,12 @@ export default function Home() {
     <div className="App">
       <Navbar />
       <div className="content">
-        <Products />
-        <Cart />
+        <div className="products-container">
+          <Products />
+        </div>
+        <div style={{flex: 4}}>
+          <Cart />
+        </div>
       </div>
     </div>
   );
