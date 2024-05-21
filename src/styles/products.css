@@ -9,23 +9,51 @@
 
 .products .header {
   font-size: 1.5rem;
-  margin: 2rem 0;
+  margin: 2rem;
 }
 
 .product-list {
-  display: flex;
-  flex-wrap: wrap;
+  min-width: 130%;
 }
 
 .product-list .item {
-  width: 50%;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 10% 0;
+  margin-right: 5%;
+  font-size: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name_price-container {
+  min-width: 60%;
+}
+
+.name_price-container>div:first-child {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 button.add-to-cart {
   margin-top: 1rem;
+  height: 23%;
+  width: 70px
 }
 
 .product-image {
-  width: 8rem;
+  width: 11rem;
+  height: 11rem;
 }
+
+.scroller {
+  margin: 0 auto;
+  height: 500px;
+  width: 600px;
+  overflow: auto;
+}
+

@@ -4,22 +4,25 @@ export interface IProduct {
   id: number;
   name: string;
   price: number;
-  unit: string | null;
   image: string;
+  links: [];
 }
 
 interface IProductResponse {
-  products: IProduct[];
+  links: [];
+  content: IProduct[];
 }
 
-// fetch products list from mock API
+// fetch products list from API
 export const getProducts = async () => {
   try {
+    /* TODO : Configure setting endpoint + configuration for start project */
+    /* const res = await axios.get("http://localhost:8080/pizza/products"); */
     const res = await axios.get("/json/products.json");
     const data = res.data as IProductResponse;
-    if (data == null || data.products == null)
+    if (data == null || data.content == null)
       throw new Error("missing product info");
-    return data.products;
+    return data.content;
   } catch (err) {
     if (err instanceof Error)
       throw new Error("Error in fetching products: " + err.message);
