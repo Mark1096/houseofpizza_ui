@@ -5,70 +5,70 @@
       "id": 1,
       "name": "Margherita",
       "price": 5.5,
-      "image": "../assets/images/margherita.jpg",
+      "image": "margherita.jpg",
       "links": []
     },
     {
       "id": 2,
       "name": "Capricciosa",
       "price": 7,
-      "image": "../assets/images/capricciosa.jpg",
+      "image": "capricciosa.jpg",
       "links": []
     },
     {
       "id": 3,
       "name": "Salsiccia&Friarielli",
       "price": 8,
-      "image": "../assets/images/salsiccia_friarielli.jpg",
+      "image": "salsiccia_friarielli.jpg",
       "links": []
     },
     {
       "id": 4,
       "name": "Biancaneve",
       "price": 5,
-      "image": "../assets/images/biancaneve.jpg",
+      "image": "biancaneve.jpg",
       "links": []
     },
     {
       "id": 5,
       "name": "Diavola",
       "price": 7,
-      "image": "../assets/images/diavola.jpg",
+      "image": "diavola.jpg",
       "links": []
     },
     {
       "id": 6,
       "name": "Quattro stagioni",
       "price": 9,
-      "image": "../assets/images/quattro_stagioni.jpg",
+      "image": "quattro_stagioni.jpg",
       "links": []
     },
     {
       "id": 7,
       "name": "Marinara",
       "price": 6,
-      "image": "../assets/images/marinara.jpg",
+      "image": "marinara.jpg",
       "links": []
     },
     {
       "id": 8,
       "name": "Parmigiana",
       "price": 9.5,
-      "image": "../assets/images/parmigiana.jpg",
+      "image": "parmigiana.jpg",
       "links": []
     },
     {
       "id": 9,
       "name": "Vegetariana",
       "price": 11,
-      "image": "../assets/images/vegetariana.jpg",
+      "image": "vegetariana.jpg",
       "links": []
     },
     {
       "id": 10,
       "name": "Porcina",
       "price": 8,
-      "image": "../assets/images/porcina.jpg",
+      "image": "porcina.jpg",
       "links": []
     }
   ]

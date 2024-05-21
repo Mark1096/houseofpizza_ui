@@ -13,11 +13,12 @@ interface IProductResponse {
   content: IProduct[];
 }
 
-// fetch products list from mock API
+// fetch products list from API
 export const getProducts = async () => {
-
   try {
-    const res = await axios.get("/json/products.json");   // modificare questa istruzione, intercettando la chiamata fatta a backend, nella quale verrà passato il file json, inserendo "/pizza/ordering"
+    /* TODO : Configure setting endpoint + configuration for start project */
+    /* const res = await axios.get("http://localhost:8080/pizza/products"); */
+    const res = await axios.get("/json/products.json");
     const data = res.data as IProductResponse;
     if (data == null || data.content == null)
       throw new Error("missing product info");
@@ -27,5 +28,4 @@ export const getProducts = async () => {
       throw new Error("Error in fetching products: " + err.message);
     return [];
   }
-
 };
