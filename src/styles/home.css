@@ -29,3 +29,8 @@ button:hover {
 button:focus {
   background-color: #444;
 }
+
+.order-container {
+  margin: 0 -5%;
+  display: flex;
+}

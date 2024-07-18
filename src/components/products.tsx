@@ -3,7 +3,6 @@ import "../styles/products.css";
 import { IProduct } from "../external/product";
 import { getProducts } from "../external/product";
 import Product from "./product";
-import { isJSDocUnknownTag } from "typescript";
 
 export default function Products() {
   

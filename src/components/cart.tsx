@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, RefObject } from "react";
 import "../styles/cart.css";
 import { formatCurrency } from "../util";
 import { useAddItem, useRemoveItem, useCart } from "../hooks";
+import { orderCreation } from "../external/cart";
+
+interface SecondComponentProps {
+  targetRef: RefObject<HTMLDivElement>;
+}
 
 /*
 TODO: Modify "cart.ts" and manage the dispatch of orders to the backend, passing as object:
 {
-  personName: ...,
   products: [
     obj{
       id: ...,
@@ -16,7 +20,7 @@ TODO: Modify "cart.ts" and manage the dispatch of orders to the backend, passing
 }
 */
 
-export default function Cart() {
+const Cart: React.FC<SecondComponentProps> = ({ targetRef }) => {
   const [totalCost, setTotalCost] = useState(0);
   const { cartItems } = useCart();
   const { removeItem } = useRemoveItem();
@@ -30,6 +34,19 @@ export default function Cart() {
 
     setTotalCost(totalCost);
   }, [cartItems]);
+
+  const confirmOrder = () => {
+
+    if(cartItems.length) {
+
+      orderCreation(cartItems);
+
+      if (targetRef.current) {
+        targetRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    } 
+    
+  };
 
   return (
     <div className="cart" data-testid="cart">
@@ -118,16 +135,13 @@ export default function Cart() {
       <div className="button-wrapper">
         <button
           className="button add-order"
-        
-          onClick={() => {
-              /*
-              TODO: add functionality for order submission.
-              */
-          }}
+          onClick={confirmOrder}
         >
           Confirm
         </button>
       </div>
     </div>
-  );
+  )
 }
+
+export default Cart;
