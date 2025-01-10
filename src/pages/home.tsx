@@ -2,8 +2,14 @@ import "../styles/home.css";
 import Products from "../components/products";
 import Navbar from "../components/navbar";
 import Cart from "../components/cart";
+import Orders from "../components/orders";
+import { RefObject } from 'react';
 
-export default function Home() {
+interface SecondComponentProps {
+    targetRef: RefObject<HTMLDivElement>;
+}
+
+const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
   return (
     <div className="App">
       <Navbar />
@@ -15,6 +21,13 @@ export default function Home() {
           <Cart />
         </div>
       </div>
+      <div className="content">
+        <div className="order-container">
+          <Orders targetRef={targetRef} />
+        </div>
+      </div>  
     </div>
   );
 }
+
+export default Home;

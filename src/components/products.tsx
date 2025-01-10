@@ -20,13 +20,13 @@ export default function Products() {
   return (
     <div className="products" data-testid="products">
       <div className="header">Menu</div>
-        <div className="product-list scroller">
-          {products.map((item) => {
-            return (
-              <Product data={item} />
-            )
-          })}
-        </div>
+      <div className="product-list scroller">
+        {products.map((item) => {
+          return (
+            <Product data={item} />
+          )
+        })}
+      </div>
     </div>
   );
 }
