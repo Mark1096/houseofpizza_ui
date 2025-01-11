@@ -17,8 +17,8 @@ interface IProductResponse {
 export const getProducts = async () => {
   try {
     /* TODO : Configure setting endpoint + configuration for start project */
-    //const res = await axios.get("http://localhost:4001/houseofpizza/pizza/products");
-    const res = await axios.get("http://98.80.215.91:4001/houseofpizza/pizza/products");
+    const res = await axios.get("http://localhost:4001/houseofpizza/pizza/products");
+    //const res = await axios.get("http://98.80.215.91:4001/houseofpizza/pizza/products");
     // const res = await axios.get("/json/products.json");
     const data = res.data as IProductResponse;
     if (data == null || data.content == null)
