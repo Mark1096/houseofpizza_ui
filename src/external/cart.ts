@@ -1,17 +1,12 @@
-import { IProduct } from "./product";
+import { ICartItem } from "./interfaces";
 import axios from "axios";
-
-export interface ICartItem {
-  product: IProduct;
-  quantity: number;
-}
 
 export const orderCreation = async (items: ICartItem[]) => {
   
-  let obj = {
+  let productList = {
     products: [{}]
   }
-  obj.products.pop();
+  productList.products.pop();
 
   for(var item of items) {
     let tmp = {
@@ -20,12 +15,10 @@ export const orderCreation = async (items: ICartItem[]) => {
     }
     tmp.id = item.product.id;
     tmp.quantity = item.quantity;
-    obj.products.push(tmp);
+    productList.products.push(tmp);
   }
-
-  console.log("Obj: \n" + obj.products);
   
-  axios.post("http://localhost:4001/houseofpizza/pizza/order/creation", obj)
+  axios.post("http://localhost:4001/houseofpizza/pizza/order/creation", productList)
       .then(response => console.log("Response to order creation: \n", response))
       .catch(error => { console.error("Error to order creation: \n", error) });
 } 

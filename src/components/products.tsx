@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/products.css";
-import { IProduct } from "../external/product";
+import { IProduct } from "../external/interfaces";
 import { getProducts } from "../external/product";
 import Product from "./product";
 import { isJSDocUnknownTag } from "typescript";

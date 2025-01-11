@@ -1,14 +1,32 @@
-import React, { useEffect, RefObject } from "react";
+import React, { useEffect, RefObject, useState } from "react";
 import "../styles/orders.css";
-// import { getStatusOrder } from "../external/order";  // Da aggiungere!
+import {IOrderStatusResponse} from "../external/interfaces"
+import axios from "axios";
 
 interface SecondComponentProps {
-    targetRef: RefObject<HTMLDivElement>; // Tipizza la prop targetRef
+    targetRef: RefObject<HTMLDivElement>;
 }
 
 const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
+    const [orders, setOrders] = useState<IOrderStatusResponse>({
+        content: [],
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    var order_list = [
+    const loadCart = async (orderId: string) => {
+        setLoading(true);
+        try {
+            const res = await axios.get<IOrderStatusResponse>("http://localhost:4001/houseofpizza/pizza/order/status/{"+orderId+"}");
+            setOrders(res.data || { content: [] });
+        } catch (err) {
+            setError("Failed to load cart data. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /*var orders = [
         [
             {
                 name: "Margherita",
@@ -57,15 +75,15 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
                 state: "Pronta"
             }
         ]
-    ];    
+    ];*/
 
     /*
     useEffect(() => {
         // fetch products from mock API
         (async () => {
             
-          const order_list = await getProducts();
-          setProducts(order_list);
+          const orders = await getProducts();
+          setProducts(orders);
           
         })();
       }, []);
@@ -78,7 +96,19 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
                 <form action="" method="GET">
                     <label>Enter your order number:</label><br/>
                     <input type="number" name="order_number" id="order_number" min="1" required />
-                    <input type="submit" value="Show" id="order_button" />
+                    <button
+                      className="action getStatus"
+                      aria-label="Get order"
+                      onClick={() => {
+                        const orderNumber = (document.getElementById("order_number") as HTMLInputElement).value;
+                        if (!orderNumber || isNaN(Number(orderNumber))) {
+                            setError("Please enter a valid order number.");
+                            return;
+                        }
+                        return loadCart(orderNumber)
+                    }}
+                    />
+
                 </form>
             </div>
             
@@ -86,37 +116,32 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
                 <table>
                     <thead>
                         <tr>
-                            <th> N° ordine </th>
+                            <th> N° order </th>
                             <th>Pizza</th>
                             <th>Quantity</th>
                             <th>State</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {order_list.length < 1 ? (
+                        {orders?.content.length < 1 ? (
                             <tr>
                                 <td colSpan={4} className="noItem">
                                     There are no orders.
                                 </td>
                             </tr>
                         ) : (
-                            order_list.map((order) => {
+                            orders?.content.map((order, index) => {
                                 return (
-                                    order.map((item, i) => {
-                                        return(
-                                            <tr className={i == 0 ? "table_rows" : ""}>
-                                                {i == 0 ? <td id="id_order" rowSpan={order.length}> 2 </td> : null}
-                                                <td> {item.name} </td>
-                                                <td> {item.quantity} </td>
-                                                <td> {item.state} </td>
-                                                {/* TODO: Implementare la logica di attivazione del pulsante sottostante solo quando tutti gli elementi dell'ordine sono in stato di Pronto */}
-                                                {i == 0 ? <td rowSpan={order.length}> <button disabled id="order_button"> Delivery </button> </td> : null}
-                                            </tr>
-                                        )
-                                    })
+                                    <tr className={index == 0 ? "table_rows" : ""}>
+                                        {/*index == 0 ? <td id="id_order" rowSpan={order.length}> 2 </td> : null*/}
+                                        <td> {order.product.name} </td>
+                                        <td> {order.status} </td>
+                                        {/* TODO: Implementare la logica di attivazione del pulsante sottostante solo quando tutti gli elementi dell'ordine sono in stato di Pronto */}
+                                        {/*index == 0 ? <td rowSpan={order.length}> <button disabled id="order_button"> Delivery </button> </td> : null*/}
+                                    </tr>
                                 )
-                            })   
-                        )} 
+                            }
+                        ))} 
                     </tbody>
                 </table>
             </div>

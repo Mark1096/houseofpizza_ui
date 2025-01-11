@@ -1,5 +1,5 @@
 import useCart from "./useCart";
-import { IProduct } from "../external/product";
+import { IProduct } from "../external/interfaces";
 
 const useAddItem = () => {
   const { cartItems, setCartItems } = useCart();

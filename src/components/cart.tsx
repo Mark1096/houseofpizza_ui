@@ -2,19 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../styles/cart.css";
 import { formatCurrency } from "../util";
 import { useAddItem, useRemoveItem, useCart } from "../hooks";
-
-/*
-TODO: Modify "cart.ts" and manage the dispatch of orders to the backend, passing as object:
-{
-  personName: ...,
-  products: [
-    obj{
-      id: ...,
-      quantity: ...
-    }
-  ]
-}
-*/
+import { orderCreation } from "../external/cart";
+import { ICartItem } from "../external/interfaces";
 
 export default function Cart() {
   const [totalCost, setTotalCost] = useState(0);
@@ -118,11 +107,15 @@ export default function Cart() {
       <div className="button-wrapper">
         <button
           className="button add-order"
-        
+
           onClick={() => {
-              /*
-              TODO: add functionality for order submission.
-              */
+            const list: ICartItem[] = cartItems.map( item => ({
+              product: item.product,
+              quantity: item.quantity 
+            }));
+
+            return orderCreation(list);
+            // TODO : Insert here reset after send order for Shopping Cart
           }}
         >
           Confirm
