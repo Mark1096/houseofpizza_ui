@@ -1,15 +1,15 @@
 .order {
-    flex: 100%;
-    margin: 5.5rem 1rem;
+  flex: 100%;
+  margin: 5.5rem 1rem;
 }
 @media (min-width: 970px) {
-    .order {
-        flex: 50%;
-    }
+  .order {
+    flex: 50%;
+  }
 }
 
 .order .header {
-    font-size: 1.5rem;    
+  font-size: 1.5rem;
 }
 
 .form_container {
@@ -17,54 +17,48 @@
   font-size: 1.1rem;
 }
 
-.form_container 
+.form_container #order_button {
+  background-color: #666;
+  color: #fff;
+  max-width: 8rem;
+  text-align: center;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+}
 
-#order_button {
-    background-color: #666;
-    color: #fff;
-    max-width: 8rem;
-    text-align: center;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    margin: 1rem;
-  }
-  
 #order_button:hover {
-    background-color: #444;
-    cursor: pointer;
+  background-color: #444;
+  cursor: pointer;
 }
 
 #order_button:focus {
-    background-color: #444;
+  background-color: #444;
 }
 
 table {
-    width: 100%;
-    margin-left: -1.3%
- }
- 
+  width: 100%;
+  margin-left: -1.3%;
+}
+
 th, td {
-    padding: 10px;
-    text-align: left;
+  padding: 10px;
+  text-align: left;
 }
 
 td {
-    max-width: 100px;
-    word-wrap: break-word;
+  max-width: 100px;
+  word-wrap: break-word;
 }
 
 #id_order {
-    font-size: 30px
+  font-size: 30px;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 .table_rows {
-    border-top: 1px solid black;
+  border-top: 1px solid black;
 }
-
-
-
-

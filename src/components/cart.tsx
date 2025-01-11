@@ -107,11 +107,10 @@ export default function Cart() {
       <div className="button-wrapper">
         <button
           className="button add-order"
-
           onClick={() => {
-            const list: ICartItem[] = cartItems.map( item => ({
+            const list: ICartItem[] = cartItems.map((item) => ({
               product: item.product,
-              quantity: item.quantity 
+              quantity: item.quantity
             }));
 
             return orderCreation(list);

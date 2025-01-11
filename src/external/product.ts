@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IProductResponse } from "../external/interfaces"
+import { IProductResponse } from "../external/interfaces";
 
 // fetch products list from API
 export const getProducts = async () => {

@@ -3,10 +3,10 @@ import Products from "../components/products";
 import Navbar from "../components/navbar";
 import Cart from "../components/cart";
 import Orders from "../components/orders";
-import { RefObject } from 'react';
+import { RefObject } from "react";
 
 interface SecondComponentProps {
-    targetRef: RefObject<HTMLDivElement>;
+  targetRef: RefObject<HTMLDivElement>;
 }
 
 const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
@@ -17,7 +17,7 @@ const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
         <div className="products-container">
           <Products />
         </div>
-        <div style={{flex: 4}}>
+        <div style={{ flex: 4 }}>
           <Cart />
         </div>
       </div>
@@ -25,9 +25,9 @@ const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
         <div className="order-container">
           <Orders targetRef={targetRef} />
         </div>
-      </div>  
+      </div>
     </div>
   );
-}
+};
 
 export default Home;

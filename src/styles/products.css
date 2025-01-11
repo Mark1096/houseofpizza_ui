@@ -34,7 +34,7 @@
   min-width: 60%;
 }
 
-.name_price-container>div:first-child {
+.name_price-container > div:first-child {
   font-size: 25px;
   font-weight: bold;
 }
@@ -42,7 +42,7 @@
 button.add-to-cart {
   margin-top: 1rem;
   height: 23%;
-  width: 70px
+  width: 70px;
 }
 
 .product-image {
@@ -56,4 +56,3 @@ button.add-to-cart {
   width: 600px;
   overflow: auto;
 }
-

@@ -6,7 +6,6 @@ import Product from "./product";
 import { isJSDocUnknownTag } from "typescript";
 
 export default function Products() {
-  
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
@@ -22,9 +21,7 @@ export default function Products() {
       <div className="header">Menu</div>
       <div className="product-list scroller">
         {products.map((item) => {
-          return (
-            <Product data={item} />
-          )
+          return <Product data={item} />;
         })}
       </div>
     </div>
