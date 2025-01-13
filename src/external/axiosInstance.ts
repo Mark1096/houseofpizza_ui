@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = window.env?.REACT_APP_API_URL || 'http://default-url';
+const BASE_URL = window.env?.REACT_APP_API_URL || 'localhost';
 
 if (!BASE_URL) {
   throw new Error("API base URL is not defined in the environment variables.");
