@@ -17,7 +17,10 @@ export const orderCreation = async (items: ICartItem[]) => {
     productList.products.push(tmp);
   }
 
-  axios.post("http://localhost:4001/houseofpizza/pizza/order/creation", productList)
-    .then(response => console.log("Response to order creation: \n", response))
-    .catch(error => console.error("Error to order creation: \n", error));
+  const res = await axios.post("http://localhost:4001/houseofpizza/pizza/order/creation", productList);
+  const data = res.data;
+
+  if (data == null)
+    throw new Error("missing order response");
+  return data;
 };

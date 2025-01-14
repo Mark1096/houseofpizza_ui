@@ -7,7 +7,7 @@ import { ICartItem } from "../external/interfaces";
 
 export default function Cart() {
   const [totalCost, setTotalCost] = useState(0);
-  const { cartItems } = useCart();
+  var { cartItems } = useCart();
   const { removeItem } = useRemoveItem();
   const { addItem } = useAddItem();
 
@@ -107,14 +107,15 @@ export default function Cart() {
       <div className="button-wrapper">
         <button
           className="button add-order"
-          onClick={() => {
+          onClick={async () => {
             const list: ICartItem[] = cartItems.map((item) => ({
               product: item.product,
               quantity: item.quantity
             }));
-
-            return orderCreation(list);
-            // TODO : Insert here reset after send order for Shopping Cart
+            
+            const res = await orderCreation(list);
+            alert(`The order number ${res.order} has been successfully confirmed.`);
+            window.location.reload();
           }}
         >
           Confirm

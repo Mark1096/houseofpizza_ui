@@ -22,7 +22,7 @@ const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
         </div>
       </div>
       <div className="content">
-        <div className="order-container">
+        <div className="products-container">
           <Orders targetRef={targetRef} />
         </div>
       </div>

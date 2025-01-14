@@ -19,7 +19,7 @@
 .product-list .item {
   display: flex;
   justify-content: space-between;
-  margin: 10% 0;
+  margin: 9% 0;
   margin-right: 5%;
   font-size: 20px;
 }

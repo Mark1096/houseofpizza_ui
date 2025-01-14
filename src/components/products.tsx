@@ -3,7 +3,6 @@ import "../styles/products.css";
 import { IProduct } from "../external/interfaces";
 import { getProducts } from "../external/product";
 import Product from "./product";
-import { isJSDocUnknownTag } from "typescript";
 
 export default function Products() {
   const [products, setProducts] = useState<IProduct[]>([]);

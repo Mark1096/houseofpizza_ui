@@ -18,7 +18,7 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
     setLoading(true);
     try {
       const res = await axios.get<IOrderStatusResponse>(
-        "http://localhost:4001/houseofpizza/pizza/order/status/{" + orderId + "}");
+        `http://localhost:4001/houseofpizza/pizza/order/status/${orderId}`);
       setOrders(res.data || { content: [] });
     } catch (err) {
       setError("Failed to load cart data. Please try again.");
@@ -27,79 +27,31 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
     }
   };
 
-  /*var orders = [
-        [
-            {
-                name: "Margherita",
-                quantity: 4,
-                state: "In lavorazione"
-            },
-            {
-                name: "Diavola",
-                quantity: 2,
-                state: "In coda"
-            },
-            {
-                name: "Capricciosa",
-                quantity: 1,
-                state: "Pronta"
-            },
-            {
-                name: "Vegetariana",
-                quantity: 3,
-                state: "In lavorazione"
-            },
-            {
-                name: "Salsiccia & Friarielli",
-                quantity: 1,
-                state: "Pronta"
-            }
-        ],
-        [
-            {
-                name: "Vegetariana",
-                quantity: 3,
-                state: "In lavorazione"
-            },
-            {
-                name: "Salsiccia & Friarielli",
-                quantity: 1,
-                state: "Pronta"
-            },{
-                name: "Vegetariana",
-                quantity: 3,
-                state: "In lavorazione"
-            },
-            {
-                name: "Salsiccia & Friarielli",
-                quantity: 1,
-                state: "Pronta"
-            }
-        ]
-    ];*/
-
-  /*
-    useEffect(() => {
-        // fetch products from mock API
-        (async () => {
-            
-          const orders = await getProducts();
-          setProducts(orders);
-          
-        })();
-      }, []);
-      */
-
   return (
     <div className="order" data-testid="order" ref={targetRef}>
       <div className="header">Orders</div>
       <div className="form_container">
-        <form action="" method="GET">
+        <form 
+          action="" 
+          method="GET"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const orderNumber = (
+              document.getElementById("order_number") as HTMLInputElement
+            ).value;
+        
+            if (!orderNumber || isNaN(Number(orderNumber))) {
+              setError("Please enter a valid order number.");
+              return;
+            }
+            
+            loadCart(orderNumber);
+          }}
+        >
           <label>Enter your order number:</label>
           <br />
           <input
             type="number"
-            name="order_number"
             id="order_number"
             min="1"
             required
@@ -107,17 +59,8 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
           <button
             className="action getStatus"
             aria-label="Get order"
-            onClick={() => {
-              const orderNumber = (
-                document.getElementById("order_number") as HTMLInputElement
-              ).value;
-              if (!orderNumber || isNaN(Number(orderNumber))) {
-                setError("Please enter a valid order number.");
-                return;
-              }
-              return loadCart(orderNumber);
-            }}
-          />
+            type="submit"
+          > Show </button>
         </form>
       </div>
 
@@ -125,10 +68,9 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
         <table>
           <thead>
             <tr>
-              <th> N° order </th>
               <th>Pizza</th>
-              <th>Quantity</th>
-              <th>State</th>
+              <th>Status</th>
+              <th>Price</th>
             </tr>
           </thead>
           <tbody>
@@ -145,6 +87,7 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
                     {/*index == 0 ? <td id="id_order" rowSpan={order.length}> 2 </td> : null*/}
                     <td> {order.product.name} </td>
                     <td> {order.status} </td>
+                    <td> {order.product.price + " €"} </td>
                     {/* TODO: Implementare la logica di attivazione del pulsante sottostante solo quando tutti gli elementi dell'ordine sono in stato di Pronto */}
                     {/*index == 0 ? <td rowSpan={order.length}> <button disabled id="order_button"> Delivery </button> </td> : null*/}
                   </tr>
