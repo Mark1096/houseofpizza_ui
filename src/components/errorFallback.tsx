@@ -1,6 +1,4 @@
-interface IErrorFallback {
-  errorMessage: String;
-}
+import { IErrorFallback } from "../external/interfaces";
 
 export default function ErrorFallback(props: IErrorFallback) {
   return (

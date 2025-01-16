@@ -1,11 +1,7 @@
-import React, { useEffect, RefObject, useState } from "react";
+import React, { useState } from "react";
 import "../styles/orders.css";
-import { IOrderStatusResponse } from "../external/interfaces";
-import axios from "axios";
-
-interface SecondComponentProps {
-  targetRef: RefObject<HTMLDivElement>;
-}
+import { IOrderStatusResponse, SecondComponentProps } from "../external/interfaces";
+import axiosInstance from "../external/axiosInstance";
 
 const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
   const [orders, setOrders] = useState<IOrderStatusResponse>({
@@ -13,24 +9,40 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [order_id, setOrderId] = useState<string | null>(null);
+  const allCompleted = orders.content.every((item) => item.status === "COMPLETED");
 
   const loadCart = async (orderId: string) => {
     setLoading(true);
     try {
-      const res = await axios.get<IOrderStatusResponse>(
-        `http://localhost:4001/houseofpizza/pizza/order/status/${orderId}`);
+      const res = await axiosInstance.get<IOrderStatusResponse>(`/houseofpizza/order/${orderId}/status`);
       setOrders(res.data || { content: [] });
+      setOrderId(orderId || null);
     } catch (err) {
       setError("Failed to load cart data. Please try again.");
+      alert(`The order number ${orderId} does not exists.`);
+      window.location.reload();
     } finally {
       setLoading(false);
     }
   };
+  
+  const deleteOrder = async () => {
+    try {
+      await axiosInstance.delete<IOrderStatusResponse>(
+        `/houseofpizza/order/${order_id}`); 
+      alert(`The order number ${order_id} has been successfully retired.`);
+    }
+    catch (err) {
+      setError("Failed to delete order.");
+    }
+    window.location.reload();
+  }
 
   return (
     <div className="order" data-testid="order" ref={targetRef}>
       <div className="header">Orders</div>
-      <div className="form_container">
+      <div className="order_container">
         <form 
           action="" 
           method="GET"
@@ -49,54 +61,59 @@ const Orders: React.FC<SecondComponentProps> = ({ targetRef }) => {
           }}
         >
           <label>Enter your order number:</label>
-          <br />
-          <input
-            type="number"
-            id="order_number"
-            min="1"
-            required
-          />
-          <button
-            className="action getStatus"
-            aria-label="Get order"
-            type="submit"
-          > Show </button>
+          <div className={"form_container"}>
+            <input
+              type="number"
+              id="order_number"
+              min="1"
+              required
+            />
+            <button
+              className="action getStatus"
+              aria-label="Get order"
+              id = "order_button"
+              type="submit"
+            > 
+              Show 
+            </button>
+          </div>
         </form>
       </div>
 
-      <div className="product-list scroller">
-        <table>
-          <thead>
-            <tr>
-              <th>Pizza</th>
-              <th>Status</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders?.content.length < 1 ? (
+      { orders.content.length > 0 && (
+        <div className="table-container scroller">
+          <table>
+            <thead>
               <tr>
-                <td colSpan={4} className="noItem">
-                  There are no orders.
-                </td>
+                <th>Pizza</th>
+                <th>Status</th>
+                <th className="order-price">Price</th>
               </tr>
-            ) : (
-              orders?.content.map((order, index) => {
-                return (
-                  <tr className={index == 0 ? "table_rows" : ""}>
-                    {/*index == 0 ? <td id="id_order" rowSpan={order.length}> 2 </td> : null*/}
-                    <td> {order.product.name} </td>
-                    <td> {order.status} </td>
-                    <td> {order.product.price + " €"} </td>
-                    {/* TODO: Implementare la logica di attivazione del pulsante sottostante solo quando tutti gli elementi dell'ordine sono in stato di Pronto */}
-                    {/*index == 0 ? <td rowSpan={order.length}> <button disabled id="order_button"> Delivery </button> </td> : null*/}
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              { orders?.content.map((order, index) => {
+                  return (
+                    <tr className={index === 0 ? "table_rows" : ""}>
+                      <td> {order.product.name} </td>
+                      <td> {order.status} </td>
+                      <td className="order-price"> {order.product.price + " €"} </td>
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
+          </table>
+          
+          <button 
+            disabled = {!allCompleted}
+            aria-label="Withdraw order" 
+            onClick={() => { deleteOrder() }}
+          > 
+            Get order
+          </button>
+
+        </div>
+        )}
     </div>
   );
 };

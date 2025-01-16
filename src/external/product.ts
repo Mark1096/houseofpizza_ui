@@ -15,7 +15,7 @@ interface IProductResponse {
 
 export const getProducts = async () => {
   try {
-    const res = await axiosInstance.get("/houseofpizza/pizza/products");
+    const res = await axiosInstance.get("/houseofpizza/products");
     const data = res.data as IProductResponse;
     if (data == null || data.content == null)
       throw new Error("missing product info");

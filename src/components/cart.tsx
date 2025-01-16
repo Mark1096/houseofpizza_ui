@@ -114,7 +114,7 @@ export default function Cart() {
             }));
             
             const res = await orderCreation(list);
-            alert(`The order number ${res.order} has been successfully confirmed.`);
+            alert(`The order number ${res.orderId} has been successfully confirmed.`);
             window.location.reload();
           }}
         >

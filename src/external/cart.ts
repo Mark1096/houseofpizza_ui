@@ -1,5 +1,5 @@
+import axiosInstance from "./axiosInstance";
 import { ICartItem } from "./interfaces";
-import axios from "axios";
 
 export const orderCreation = async (items: ICartItem[]) => {
   let productList = {
@@ -17,7 +17,7 @@ export const orderCreation = async (items: ICartItem[]) => {
     productList.products.push(tmp);
   }
 
-  const res = await axios.post("http://localhost:4001/houseofpizza/pizza/order/creation", productList);
+  const res = await axiosInstance.post("/houseofpizza/order/creation", productList);
   const data = res.data;
 
   if (data == null)

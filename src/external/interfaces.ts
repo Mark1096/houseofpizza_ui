@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export interface IProduct {
   id: number;
   name: string;
@@ -28,4 +30,12 @@ export interface IOrderStatus {
 
 export interface IOrderStatusResponse {
   content: IOrderStatus[];
+}
+
+export interface IErrorFallback {
+  errorMessage: String;
+}
+
+export interface SecondComponentProps {
+  targetRef: RefObject<HTMLDivElement>;
 }
