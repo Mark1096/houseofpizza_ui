@@ -2,7 +2,7 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "refactor_folder_structure" ]
+    branches: [ "main" ]
 
 jobs:
   build:
