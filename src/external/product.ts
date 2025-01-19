@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../external/axiosInstance";
 
 export interface IProduct {
   id: number;
@@ -13,12 +13,9 @@ interface IProductResponse {
   content: IProduct[];
 }
 
-// fetch products list from API
 export const getProducts = async () => {
   try {
-    /* TODO : Configure setting endpoint + configuration for start project */
-    /* const res = await axios.get("http://localhost:8080/pizza/products"); */
-    const res = await axios.get("/json/products.json");
+    const res = await axiosInstance.get("/houseofpizza/products");
     const data = res.data as IProductResponse;
     if (data == null || data.content == null)
       throw new Error("missing product info");
