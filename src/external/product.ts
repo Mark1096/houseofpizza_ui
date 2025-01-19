@@ -1,25 +1,25 @@
-import axios from "axios";
+import axiosInstance from "../external/axiosInstance";
 
 export interface IProduct {
   id: number;
   name: string;
   price: number;
-  unit: string | null;
   image: string;
+  links: [];
 }
 
 interface IProductResponse {
-  products: IProduct[];
+  links: [];
+  content: IProduct[];
 }
 
-// fetch products list from mock API
 export const getProducts = async () => {
   try {
-    const res = await axios.get("/json/products.json");
+    const res = await axiosInstance.get("/houseofpizza/products");
     const data = res.data as IProductResponse;
-    if (data == null || data.products == null)
+    if (data == null || data.content == null)
       throw new Error("missing product info");
-    return data.products;
+    return data.content;
   } catch (err) {
     if (err instanceof Error)
       throw new Error("Error in fetching products: " + err.message);

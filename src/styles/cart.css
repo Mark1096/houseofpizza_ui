@@ -12,6 +12,18 @@
   margin: 2rem 0;
 }
 
+button.add-order {
+  margin-top: 1rem;
+  width: 90px;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 88%;
+}
+
 .basket {
   width: 100%;
 }
