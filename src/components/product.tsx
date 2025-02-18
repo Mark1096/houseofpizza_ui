@@ -10,7 +10,6 @@ export default function Product(props: any) {
       data-testid={`product-${props.data.id}`}
       key={props.id}
     >
-      {/* TODO : Declare path variable for resources folder */}
       <img
         src={"../assets/images/" + props.data.image}
         alt={"../assets/images/" + props.data.name}
