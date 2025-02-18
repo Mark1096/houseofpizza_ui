@@ -12,6 +12,11 @@
   align-items: flex-start;
 }
 
+.background {
+  background-image: url("../pages/full_image_ui.avif");
+  background-size: cover;
+}
+
 button {
   background-color: #666;
   color: #fff;
