@@ -13,17 +13,19 @@ const Home: React.FC<SecondComponentProps> = ({ targetRef }) => {
   return (
     <div className="App">
       <Navbar />
-      <div className="content">
-        <div className="products-container">
-          <Products />
+      <div className="background">
+        <div className="content">
+          <div className="products-container">
+            <Products />
+          </div>
+          <div style={{ flex: 4 }}>
+            <Cart />
+          </div>
         </div>
-        <div style={{ flex: 4 }}>
-          <Cart />
-        </div>
-      </div>
-      <div className="content">
-        <div className="products-container">
-          <Orders targetRef={targetRef} />
+        <div className="content">
+          <div className="products-container">
+            <Orders targetRef={targetRef} />
+          </div>
         </div>
       </div>
     </div>
