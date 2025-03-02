@@ -4,7 +4,7 @@ import { IOrderStatusResponse } from "../external/interfaces";
 export const getStatusOrder = async (orderId: number) => {
   try {
     return await axios.get<IOrderStatusResponse>(
-      "http://localhost:4001/houseofpizza/pizza/order/status/{" + orderId + "}"
+      "http://localhost:30008/houseofpizza/pizza/order/status/{" + orderId + "}"
     );
   } catch (err) {
     if (err instanceof Error)
