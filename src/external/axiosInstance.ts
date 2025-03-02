@@ -9,7 +9,7 @@ if (!BASE_URL) {
 const fullBaseURL = BASE_URL.startsWith("http://") || BASE_URL.startsWith("https://")
   ? BASE_URL : `http://${BASE_URL}`;
 
-const finalBaseURL = fullBaseURL.includes(":4001") ? fullBaseURL : `${fullBaseURL}:4001`;
+const finalBaseURL = fullBaseURL.includes(":30008") ? fullBaseURL : `${fullBaseURL}:30008`;
 
 const axiosInstance = axios.create({
   baseURL: finalBaseURL
